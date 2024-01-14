@@ -1,0 +1,13 @@
+{
+  "name": "net.rs64.ttt-world-extension",
+  "displayName": "TTT-WorldExtension",
+  "version": "0.0.0",
+  "unity": "2022.3",
+  "description": "TexTransTool on world extension!",
+  "author": {
+    "name": "ReinaSakiria",
+    "url": "https://rs64.net/"
+  },
+  "url": "https://github.com/ReinaS-64892/TTT-WorldExtension",
+  "repo": "https://vpm.rs64.net/vpm.json"
+}
