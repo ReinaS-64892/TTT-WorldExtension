@@ -1,0 +1,20 @@
+{
+    "name": "net.rs64.ttt-world-extension",
+    "rootNamespace": "",
+    "references": [
+        "net.rs64.tex-trans-tool.editor",
+        "net.rs64.tex-trans-tool.runtime",
+        "VRC.SDKBase.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
