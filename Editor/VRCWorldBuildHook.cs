@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using net.rs64.TexTransTool.Build;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VRC.SDKBase;
@@ -10,40 +12,25 @@ using static net.rs64.TexTransTool.Build.AvatarBuildUtils;
 
 namespace net.rs64.TexTransTool.WorldExtension
 {
-    public class VRCWorldBuildHook : IVRCSDKBuildRequestedCallback
+    public class VRCWorldBuildHook : IProcessSceneWithReport
     {
         public int callbackOrder => -2048;
-
-        public bool OnBuildRequested(VRCSDKRequestedBuildType requestedBuildType)
+        public void OnProcessScene(Scene scene, BuildReport report)
         {
-            if (requestedBuildType is not VRCSDKRequestedBuildType.Scene) { return true; }
-
-            Debug.Log("CallBy" + requestedBuildType);
-            var sceneFinder = new GameObject("temp");
-            try
-            {
-                var scene = sceneFinder.scene;
-                var worldRenderers = scene.GetRootGameObjects().SelectMany(s => s.GetComponentsInChildren<Renderer>(true)).ToList();
-                var findAtPhase = FindAtPhaseFromScene(scene);
-                var renderersDomain = new RenderersDomain(worldRenderers, false, true);
-                var session = new TexTransBuildSession(renderersDomain, findAtPhase);
-
-                AvatarBuildUtils.ExecuteAllPhaseAndEnd(session);
-                foreach (var tag in scene.GetRootGameObjects().SelectMany(s => s.GetComponentsInChildren<ITexTransToolTag>(true)).OfType<Component>())
-                { UnityEngine.Object.DestroyImmediate(tag); }
-
-                UnityEngine.Object.DestroyImmediate(sceneFinder);
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e);
-                UnityEngine.Object.DestroyImmediate(sceneFinder);
-                return false;
-            }
+            ProcessScene(scene);
         }
 
+        private static void ProcessScene(Scene scene)
+        {
+            var worldRenderers = scene.GetRootGameObjects().SelectMany(s => s.GetComponentsInChildren<Renderer>(true)).ToList();
+            var findAtPhase = FindAtPhaseFromScene(scene);
+            var renderersDomain = new RenderersDomain(worldRenderers, false, true);
+            var session = new TexTransBuildSession(renderersDomain, findAtPhase);
+
+            AvatarBuildUtils.ExecuteAllPhaseAndEnd(session);
+            foreach (var tag in scene.GetRootGameObjects().SelectMany(s => s.GetComponentsInChildren<ITexTransToolTag>(true)).OfType<Component>())
+            { UnityEngine.Object.DestroyImmediate(tag); }
+        }
 
         internal static List<Domain2Behavior> FindAtPhaseFromScene(Scene scene)
         {
