@@ -14,7 +14,27 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": false,
-    "defineConstraints": [],
-    "versionDefines": [],
+    "defineConstraints": [
+        "VRC_BASE",
+        "VRC_WORLD",
+        "TTT"
+    ],
+    "versionDefines": [
+        {
+            "name": "net.rs64.tex-trans-tool",
+            "expression": "[0.9.0-beta.0]",
+            "define": "TTT"
+        },
+        {
+            "name": "com.vrchat.base",
+            "expression": "3.7.1",
+            "define": "VRC_BASE"
+        },
+        {
+            "name": "com.vrchat.worlds",
+            "expression": "3.7.1",
+            "define": "VRC_WORLD"
+        }
+    ],
     "noEngineReferences": false
 }

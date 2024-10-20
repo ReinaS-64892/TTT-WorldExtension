@@ -9,5 +9,11 @@
     "url": "https://rs64.net/"
   },
   "url": "https://github.com/ReinaS-64892/TTT-WorldExtension",
-  "repo": "https://vpm.rs64.net/vpm.json"
+  "repo": "https://vpm.rs64.net/vpm.json",
+  "dependencies": {
+    "net.rs64.tex-trans-tool": "0.9.0-beta.0"
+  },
+  "vpmDependencies": {
+    "net.rs64.tex-trans-tool": "0.9.0-beta.0"
+  }
 }

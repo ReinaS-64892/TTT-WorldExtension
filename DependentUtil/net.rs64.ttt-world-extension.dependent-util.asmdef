@@ -1,0 +1,16 @@
+{
+    "name": "net.rs64.ttt-world-extension.dependent-util",
+    "rootNamespace": "",
+    "references": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": ["TTT_WE_DEV"],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
