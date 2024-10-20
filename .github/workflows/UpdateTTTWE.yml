@@ -1,4 +1,4 @@
-name: UpdateTTTDU
+name: UpdateTTTWE
 
 on:
   workflow_call:
