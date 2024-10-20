@@ -1,0 +1,21 @@
+name: CreateReleaseDraftTest
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        required: true
+
+jobs:
+  Call-Tag2Zip:
+    uses: ./.github/workflows/Tag2Zip.yml
+    with:
+      tag: ${{ github.event.inputs.tag }}
+
+  Call-ReleaseDraft:
+    needs: [Call-Tag2Zip]
+    uses: ./.github/workflows/CreateReleaseDraft.yml
+    with:
+      tag: ${{ github.event.inputs.tag }}
+

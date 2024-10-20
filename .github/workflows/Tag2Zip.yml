@@ -1,0 +1,40 @@
+name: Tag2Zip
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+        required: true
+  workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        required: true
+
+jobs:
+  Tag2Zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-tags: true
+          ref: ${{ github.event.inputs.tag }}
+
+      - name: RemoveDotgitAndDotgithub
+        run: |
+          rm -r ./.git
+          rm -r ./.github
+          rm -r ./DependentUtil
+          rm -r ./DependentUtil.meta
+
+      - name: CreateZip
+        run: |
+          zip -r ttt-world-extension-${{ github.event.inputs.tag }}.zip ./*
+
+      - name: Upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ttt-world-extension-${{ github.event.inputs.tag }}
+          path: ttt-world-extension-${{ github.event.inputs.tag }}.zip
