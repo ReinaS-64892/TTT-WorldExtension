@@ -35,4 +35,4 @@ jobs:
           token: ${{ secrets.VPM_REPO_TOKEN }}
           repository: ReinaS-64892/vpm.rs64.net
           event-type: add_new_version
-          client-payload: '{"repository": "TexTransCore", "tag": "${{ inputs.tag }}"}'
+          client-payload: '{"repository": "TTT-WorldExtension", "tag": "${{ inputs.tag }}"}'

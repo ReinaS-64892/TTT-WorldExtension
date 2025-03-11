@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2369c186c1ab3c44b9ef86b3a8cbccf, type: 3}
   m_Name: StanderdShaderSupport
   m_EditorClassIdentifier: 
-  TTTSaveDataVersion: 5
+  TTTSaveDataVersion: 6
   SupportedShaderComparer:
     rid: 8849143802984136708
   Priority: 0
