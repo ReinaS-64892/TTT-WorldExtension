@@ -26,18 +26,11 @@ jobs:
           jq ".version|=\"${VersionStr}\"" ./package.json > $tempjson
           mv $tempjson ./package.json
 
-      - name: update changelog
-        if: ${{ !contains(inputs.tag,'-') }}
-        uses: stefanzweifel/changelog-updater-action@v1
-        with:
-          latest-version: ${{ inputs.tag }}
-
       - name: git commit
         run: |
           git config user.name  "GitHub Action"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ./package.json
-          git add ./CHANGELOG.md
           git commit -m "chore: update TTT-WorldExtension ${{ inputs.tag }}!"
           git tag ${{ inputs.tag }}
           git push
