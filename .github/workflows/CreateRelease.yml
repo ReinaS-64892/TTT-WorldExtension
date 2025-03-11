@@ -29,7 +29,6 @@ jobs:
         name: ${{ inputs.tag }}
         tag_name: ${{ inputs.tag }}
         prerelease: ${{ contains(inputs.tag,'-') }}
-        draft: true
         generate_release_notes: true
         files: |
           ttt-world-extension-${{ inputs.tag }}.zip
