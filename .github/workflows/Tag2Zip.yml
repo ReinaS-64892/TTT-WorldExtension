@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-tags: true
-          ref: ${{ github.event.inputs.tag }}
+          ref: ${{ inputs.tag }}
 
       - name: RemoveDotgitAndDotgithub
         run: |
@@ -31,10 +31,10 @@ jobs:
 
       - name: CreateZip
         run: |
-          zip -r ttt-world-extension-${{ github.event.inputs.tag }}.zip ./*
+          zip -r ttt-world-extension-${{ inputs.tag }}.zip ./*
 
       - name: Upload-artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ttt-world-extension-${{ github.event.inputs.tag }}
-          path: ttt-world-extension-${{ github.event.inputs.tag }}.zip
+          name: ttt-world-extension-${{ inputs.tag }}
+          path: ttt-world-extension-${{ inputs.tag }}.zip

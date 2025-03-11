@@ -1,0 +1,38 @@
+name: Create-NewVersion-And-Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        required: true
+
+jobs:
+  Call-Update-Tag:
+    uses: ./.github/workflows/UpdateTTTWE.yml
+    with:
+      tag: ${{ inputs.tag }}
+
+  Call-Tag2Zip:
+    needs: [Call-Update-Tag]
+    uses: ./.github/workflows/Tag2Zip.yml
+    with:
+      tag: ${{ inputs.tag }}
+
+  Call-Release:
+    needs: [Call-Tag2Zip]
+    uses: ./.github/workflows/CreateRelease.yml
+    with:
+      tag: ${{ inputs.tag }}
+
+  SendVpmRS64Net:
+    runs-on: ubuntu-latest
+    needs: [Call-Release]
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.VPM_REPO_TOKEN }}
+          repository: ReinaS-64892/vpm.rs64.net
+          event-type: add_new_version
+          client-payload: '{"repository": "TexTransCore", "tag": "${{ inputs.tag }}"}'

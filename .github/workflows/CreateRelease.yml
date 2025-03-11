@@ -1,4 +1,4 @@
-name: CreateReleaseDraft
+name: CreateRelease
 
 on:
   workflow_call:
@@ -14,21 +14,25 @@ jobs:
     - name: DownloadArtifact
       uses: actions/download-artifact@v4
       with:
-        name: ttt-world-extension-${{ github.event.inputs.tag }}
+        name: ttt-world-extension-${{ inputs.tag }}
 
     - name: checkout
       uses: actions/checkout@v4
       with:
         path: ./Repo
         fetch-tags: true
-        ref: ${{ github.event.inputs.tag }}
+        ref: ${{ inputs.tag }}
 
     - name: CrateRelease
       uses: softprops/action-gh-release@v2
       with:
-        name: ${{ github.event.inputs.tag }}
-        tag_name: ${{ github.event.inputs.tag }}
+        name: ${{ inputs.tag }}
+        tag_name: ${{ inputs.tag }}
+        prerelease: ${{ contains(inputs.tag,'-') }}
         draft: true
+        body: |
+          [changelog](https://github.com/ReinaS-64892/TTT-WorldExtension/blob/${{ inputs.tag }}/CHANGELOG.md)
+        generate_release_notes: true
         files: |
-          ttt-world-extension-${{ github.event.inputs.tag }}.zip
+          ttt-world-extension-${{ inputs.tag }}.zip
           Repo/package.json
