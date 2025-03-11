@@ -11,11 +11,11 @@
   "url": "https://github.com/ReinaS-64892/TTT-WorldExtension",
   "repo": "https://vpm.rs64.net/vpm.json",
   "dependencies": {
-    "net.rs64.tex-trans-tool": "0.9.0-beta.2",
-    "com.vrchat.worlds": ">=3.7.1"
+    "net.rs64.tex-trans-tool": "0.9.3",
+    "com.vrchat.worlds": "3.7.1"
   },
   "vpmDependencies": {
-    "net.rs64.tex-trans-tool": "0.9.0-beta.2",
+    "net.rs64.tex-trans-tool": "0.9.3",
     "com.vrchat.worlds": ">=3.7.1"
   }
 }
